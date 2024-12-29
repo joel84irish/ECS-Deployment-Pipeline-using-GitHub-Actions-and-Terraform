@@ -2,7 +2,7 @@ module "ecs_app" {
   source                       = "./modules/ecs"
   ec2_task_execution_role_name = "EcsTaskExecutionRoleName"
   ecs_auto_scale_role_name     = "EcsAutoScaleRoleName"
-  app_image                    = "766261352911.dkr.ecr.us-west-2.amazonaws.com/app:production"
+  app_image                    = "766261352911.dkr.ecr.us-west-2.amazonaws.com/app"
   app_port                     = 3000
   app_count                    = 1
   health_check_path            = "/"
