@@ -1,3 +1,3 @@
-# variable "aws_region" {
-#   description = "value of aws region to use for resources."
-# }
+variable "aws_region" {
+  description = "us-west-2"
+}
