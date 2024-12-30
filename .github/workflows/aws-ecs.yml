@@ -71,7 +71,7 @@ jobs:
         id: deploy
         run: |
           # Update ECS Service with the new task definition
-          aws ecs update-service --cluster $ECS_CLUSTER --service $ECS_SERVICE --task-definition $NEW_TASK_DEFINITION --force-new-deployment
+          aws ecs update-service --cluster $ECS_CLUSTER --service $ECS_SERVICE --task-definition $ECS_TASK_DEFINITION --force-new-deployment
   
       - name: Wait for deployment to stabilize
         id: wait
