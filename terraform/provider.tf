@@ -1,7 +1,7 @@
 # provider.tf
 
 provider "aws" {
-  region  = terraform.workspace
+  region  = var.aws_region
   default_tags {
     tags = {
       Environment = terraform.workspace
