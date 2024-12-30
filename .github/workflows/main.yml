@@ -14,7 +14,7 @@ env:
                                                # file, e.g. .aws/task-definition.json
   CONTAINER_NAME: app          # set this to the name of the container in the
                                                # containerDefinitions section of your task definition
-  environment: us-south-west
+  
   
 permissions:
   contents: read
@@ -23,7 +23,8 @@ jobs:
    terraform:
     name: 'Terraform'
     runs-on: self-hosted
-   
+    env:
+      environment: us-south-west   
     defaults:
       run:
         working-directory: ./
