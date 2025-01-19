@@ -22,7 +22,7 @@ permissions:
 jobs:
    terraform:
     name: 'Terraform'
-    runs-on: self-hosted
+    runs-on: 'self-hosted'
     env:
       environment: us-west-2   
     defaults:
@@ -59,7 +59,7 @@ jobs:
    build-and-push:
     needs: terraform 
     name: Build and Push
-    runs-on: self-hosted
+    runs-on: 'self-hosted'
     # environment: production
 
     steps:
@@ -94,7 +94,7 @@ jobs:
    deploy:
     needs: build-and-push
     name: Deploy
-    runs-on: self-hosted
+    runs-on: 'self-hosted'
     steps:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
