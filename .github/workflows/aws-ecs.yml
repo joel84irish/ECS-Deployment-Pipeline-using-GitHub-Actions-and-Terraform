@@ -54,8 +54,8 @@ jobs:
         run: terraform plan 
 
       - name: Terraform Apply
-        run: terraform apply 
-
+        run: terraform apply -auto-approve 
+  
    build-and-push:
     needs: terraform 
     name: Build and Push
