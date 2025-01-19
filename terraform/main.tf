@@ -27,20 +27,3 @@ module "security" {
   vpc_id   = module.network.vpc_id
 }
 
-module "logs" {
-  source            = "./modules/logs"
-  log_group_name    = "/ecs/ecs-app"
-  log_stream_name   = "ecs-log-stream"
-  retention_in_days = 30
-}
-
-module "remote_backend" {
-  source              = "./modules/backend"
-  bucket_name         = "terraform-state-backend"
-  dynamodb_table_name = "terraform-state-lock-table"
-}
-
-module "s3" {
-  source = "./modules/s3_img"
-  bucket_name = "bucket-image-codewithmuh-454"
-}
