@@ -24,7 +24,7 @@ jobs:
     name: 'Terraform'
     runs-on: self-hosted
     env:
-      environment: us-south-west   
+      environment: us-west-2   
     defaults:
       run:
         working-directory: terraform
