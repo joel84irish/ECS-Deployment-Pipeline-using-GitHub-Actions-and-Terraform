@@ -4,7 +4,7 @@ data "aws_route53_zone" "main" {
 
 resource "aws_route53_record" "main" {
   zone_id = data.aws_route53_zone.main.zone_id
-  name    = "${var.subdomain}.${var.domain_name}"
+  name    = "${var.domain_name}"
   type    = "A"
 
   alias {
@@ -15,7 +15,7 @@ resource "aws_route53_record" "main" {
 }
 
 resource "aws_acm_certificate" "main" {
-  domain_name       = "${var.subdomain}.${var.domain_name}"
+  domain_name       = "${var.domain_name}"
   validation_method = "DNS"
 
   lifecycle {
