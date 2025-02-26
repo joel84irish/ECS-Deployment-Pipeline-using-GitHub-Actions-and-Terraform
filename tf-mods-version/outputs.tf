@@ -18,4 +18,7 @@ output "ecs_service_name" {
   value       = module.ecs.service_name
 }
 
-
+output "application_url" {
+  description = "The URL of the application"
+  value       = "https://${module.dns.domain_name}"
+}
