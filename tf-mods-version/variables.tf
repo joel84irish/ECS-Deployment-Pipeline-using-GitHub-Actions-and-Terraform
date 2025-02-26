@@ -4,6 +4,11 @@ variable "project_name" {
   default     = "tm"
 }
 
+variable "domain_name" {
+  default     = "joelirish.app"
+  description = "The domain name to use for the project"
+  type        = string
+}
 
 variable "ecr_repo_url" {
   description = "The URL of the ECR repository"
