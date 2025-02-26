@@ -3,11 +3,6 @@ variable "domain_name" {
   type        = string
 }
 
-variable "subdomain" {
-  description = "The subdomain to create a record for"
-  type        = string
-}
-
 variable "alb_dns_name" {
   description = "The DNS name of the ALB"
   type        = string
