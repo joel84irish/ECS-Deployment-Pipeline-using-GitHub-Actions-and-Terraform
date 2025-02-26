@@ -24,7 +24,7 @@ jobs:
       environment: us-west-2
     defaults:
       run:
-        working-directory: Terraform-ECS
+        working-directory: tf-mods-version
     steps:
       - name: Checkout
         uses: actions/checkout@v3
