@@ -10,6 +10,9 @@ module "alb" {
   public_subnet_ids     = module.networking.public_subnet_ids
   alb_security_group_id = module.networking.alb_sg_id
 
+  certificate_arn                   = module.dns.certificate_arn
+  certificate_validation_completion = module.dns.certificate_validation_completion
+}
 
 module "ecs" {
   source           = "./modules/ecs"
@@ -24,4 +27,11 @@ module "ecs" {
   depends_on = [module.alb.https_listener_arn]
 }
 
+module "dns" {
+  source       = "./modules/dns"
+  domain_name  = var.domain_name
+  subdomain    = var.subdomain
+  alb_dns_name = module.alb.alb_dns_name
+  alb_zone_id  = module.alb.alb_zone_id
+}
 
