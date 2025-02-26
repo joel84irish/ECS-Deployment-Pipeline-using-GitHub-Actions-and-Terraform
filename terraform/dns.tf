@@ -1,5 +1,5 @@
 data "aws_route53_zone" "lab" {
-  name = "lab.moabukar.co.uk"
+  name = "lab.joelirish.app"
 }
 
 resource "aws_route53_record" "tm" {
@@ -16,7 +16,7 @@ resource "aws_route53_record" "tm" {
 
 ## HTTPS/DNS
 resource "aws_acm_certificate" "tm_cert" {
-  domain_name       = "tm.lab.moabukar.co.uk"
+  domain_name       = "tm.lab.joelirish.app"
   validation_method = "DNS"
 
   lifecycle {
