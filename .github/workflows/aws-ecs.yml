@@ -24,7 +24,7 @@ jobs:
       environment: us-west-2 
     defaults:
       run:
-        working-directory: terraform
+        working-directory: Terraform-ECS
       
     steps:
       - name: Checkout 
@@ -53,6 +53,7 @@ jobs:
       - name: Terraform Apply
         if: github.ref == 'refs/heads/feature' && github.event_name == 'push'
         run: terraform apply -auto-approve 
+  
    build-and-push:
     needs: terraform 
     name: build-and-push   
