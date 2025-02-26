@@ -25,7 +25,7 @@ resource "aws_lb_target_group" "main" {
     unhealthy_threshold = 10
     timeout             = 60
     interval            = 300
-    matcher             = "200,301,302"
+    
   }
 
   tags = {
