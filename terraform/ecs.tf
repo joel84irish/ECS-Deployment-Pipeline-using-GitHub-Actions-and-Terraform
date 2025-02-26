@@ -1,5 +1,5 @@
 resource "aws_ecs_cluster" "tm" {
-  name = "mo-sandbox"
+  name = "joel-sandbox"
 
   setting {
     name  = "containerInsights"
@@ -24,7 +24,7 @@ resource "aws_ecs_task_definition" "tm_task" {
   container_definitions = jsonencode([
     {
       name      = "tmc"
-      image     = "010928194025.dkr.ecr.eu-west-2.amazonaws.com/tm:latest"
+      image     = "980921749029.dkr.ecr.us-west-2.amazonaws.com/threat-model:latest"
       cpu       = 0
       essential = true
       portMappings = [{
