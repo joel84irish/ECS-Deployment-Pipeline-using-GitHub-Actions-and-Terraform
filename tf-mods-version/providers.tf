@@ -9,8 +9,8 @@ terraform {
   }
 
   backend "s3" {
-    bucket  = "tm-tool"
-    key     = "tm-tool/terraform.tfstate"
+    bucket  = "joel-tm"
+    key     = "joel-tm/terraform.tfstate"
     region  = "eu-west-2"
     encrypt = true
     # dynamodb_table = "your-terraform-lock-table"
@@ -28,8 +28,8 @@ provider "aws" {
 
   default_tags {
     tags = {
-      Environment = "sandbox"
-      Owner       = "mo"
+      Environment = "joel-sandbox"
+      Owner       = "jo"
       Project     = "tm"
     }
   }
