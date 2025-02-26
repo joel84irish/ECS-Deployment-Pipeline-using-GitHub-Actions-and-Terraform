@@ -1,6 +1,6 @@
 variable "cluster_name" {
   description = "Name of the ECS cluster"
-  default     = "mo-sandbox"
+  default     = "joel-sandbox"
 }
 
 variable "task_family" {
