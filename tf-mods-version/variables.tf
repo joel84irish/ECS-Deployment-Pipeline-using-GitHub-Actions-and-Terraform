@@ -5,7 +5,7 @@ variable "project_name" {
 }
 
 variable "domain_name" {
-  default     = "joelirish.app"
+  default     = "loveholidays.app"
   description = "The domain name to use for the project"
   type        = string
 }
