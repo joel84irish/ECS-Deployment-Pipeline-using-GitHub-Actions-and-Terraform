@@ -38,7 +38,7 @@ resource "aws_ecs_task_definition" "tm_task" {
         logDriver = "awslogs"
         options = {
           awslogs-group         = "/ecs/tm"
-          awslogs-region        = "eu-west-2"
+          awslogs-region        = "us-west-2"
           awslogs-stream-prefix = "ecs"
           mode                  = "non-blocking"
           awslogs-create-group  = "true"
