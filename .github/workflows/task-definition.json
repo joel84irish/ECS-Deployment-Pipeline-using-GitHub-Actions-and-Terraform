@@ -1,8 +1,9 @@
-"taskDefinitionArn": "arn:aws:ecs:eu-west-2:489877524855:task-definition/tm:2",
+{
+    "taskDefinitionArn": "arn:aws:ecs:eu-west-2:489877524855:task-definition/tm:2",
     "containerDefinitions": [
         {
             "name": "tmc",
-            "image": "980921749029.dkr.ecr.us-west-2.amazonaws.com/threat-model:latest",
+            "image": "489877524855.dkr.ecr.eu-west-2.amazonaws.com/walid-sandbox:latest",
             "cpu": 0,
             "portMappings": [
                 {
