@@ -12,7 +12,7 @@ env:
   AWS_REGION: us-west-2
   ECR_REPOSITORY: threat-model
   ECS_SERVICE: tm-service
-  ECS_CLUSTER: mo-sandbox
+  ECS_CLUSTER: joel-sandbox
   CONTAINER_NAME: tmc
 
 jobs:
@@ -49,8 +49,8 @@ jobs:
       - name: Build, tag as latest, and push Docker image to ECR
         id: build-image
         env:
-          ECR_REGISTRY: 123456789012.dkr.ecr.eu-west-2.amazonaws.com 
-          ECR_REPOSITORY: mo-sandbox
+          ECR_REGISTRY: 980921749029.dkr.ecr.us-west-2.amazonaws.com/threat-model         
+          ECR_REPOSITORY: threat-model
         run: |
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:latest .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
