@@ -9,8 +9,8 @@ on:
         default: 'no'
 
 env:
-  AWS_REGION: eu-west-2
-  ECR_REPOSITORY: tm
+  AWS_REGION: us-west-2
+  ECR_REPOSITORY: threat-model
   ECS_SERVICE: tm-service
   ECS_CLUSTER: mo-sandbox
   CONTAINER_NAME: tmc
