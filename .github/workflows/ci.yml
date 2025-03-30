@@ -11,9 +11,9 @@ on:
 env:
   AWS_REGION: us-west-2
   ECR_REPOSITORY: tm
-  ECS_SERVICE: tm-service
+  ECS_SERVICE: ecs-service
   ECS_CLUSTER: joel-sandbox
-  CONTAINER_NAME: tmc
+  CONTAINER_NAME: ecs-app
 
 jobs:
   build-and-deploy:
@@ -46,13 +46,14 @@ jobs:
 
       - name: Log in to Amazon ECR
         id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v1
+        uses: aws-actions/amazon-ecr-login@v2
 
       - name: Build, tag as latest, and push Docker image to ECR
         id: build-image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: ${{ env.ECR_REPOSITORY }}
         run: |
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:latest .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
-          echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:latest" >> $GITHUB_OUTPUT
+          echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:latest" >> $GITHUB_ENV
