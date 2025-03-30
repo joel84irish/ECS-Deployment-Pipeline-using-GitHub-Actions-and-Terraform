@@ -1,13 +1,13 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:eu-west-2:489877524855:task-definition/tm:2",
+    "taskDefinitionArn": "arn:aws:ecs:us-west-2:980921749029:task-definition/tm:4",
     "containerDefinitions": [
         {
-            "name": "tmc",
-            "image": "489877524855.dkr.ecr.eu-west-2.amazonaws.com/walid-sandbox:latest",
+            "name": "tm",
+            "image": "public.ecr.aws/c7u5x4r5/tm:latest",
             "cpu": 0,
             "portMappings": [
                 {
-                    "name": "tmc-3000-tcp",
+                    "name": "tm",
                     "containerPort": 3000,
                     "hostPort": 3000,
                     "protocol": "tcp",
@@ -27,7 +27,7 @@
                     "mode": "non-blocking",
                     "awslogs-create-group": "true",
                     "max-buffer-size": "25m",
-                    "awslogs-region": "eu-west-2",
+                    "awslogs-region": "us-west-2",
                     "awslogs-stream-prefix": "ecs"
                 },
                 "secretOptions": []
@@ -36,10 +36,10 @@
         }
     ],
     "family": "tm",
-    "taskRoleArn": "arn:aws:iam::489877524855:role/ecsTaskExecutionRole",
-    "executionRoleArn": "arn:aws:iam::489877524855:role/ecsTaskExecutionRole",
+    "taskRoleArn": "arn:aws:iam::980921749029:role/ecs_execution_role",
+    "executionRoleArn": "arn:aws:iam::980921749029:role/ecs_execution_role",
     "networkMode": "awsvpc",
-    "revision": 2,
+    "revision": 4,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
@@ -50,9 +50,6 @@
             "name": "ecs.capability.execution-role-awslogs"
         },
         {
-            "name": "com.amazonaws.ecs.capability.ecr-auth"
-        },
-        {
             "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
         },
         {
@@ -60,9 +57,6 @@
         },
         {
             "name": "com.amazonaws.ecs.capability.task-iam-role"
-        },
-        {
-            "name": "ecs.capability.execution-role-ecr-pull"
         },
         {
             "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
@@ -88,7 +82,8 @@
         "cpuArchitecture": "ARM64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2024-09-13T18:23:22.476Z",
-    "registeredBy": "arn:aws:iam::489877524855:user/walid-test-threat-modeler",
+    "registeredAt": "2025-03-17T10:42:55.384Z",
+    "registeredBy": "arn:aws:iam::980921749029:user/Terraform",
+    "enableFaultInjection": false,
     "tags": []
 }
