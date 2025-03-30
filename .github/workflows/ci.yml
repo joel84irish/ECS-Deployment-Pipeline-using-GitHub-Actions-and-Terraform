@@ -10,7 +10,7 @@ on:
 
 env:
   AWS_REGION: us-west-2
-  ECR_REPOSITORY: threat-model
+  ECR_REPOSITORY: tm
   ECS_SERVICE: tm-service
   ECS_CLUSTER: joel-sandbox
   CONTAINER_NAME: tmc
