@@ -64,7 +64,7 @@ resource "aws_ecs_task_definition" "tm_task" {
 
 
 resource "aws_ecs_service" "tm_service" {
-  name            = "tm-service"
+  name            = "ecs-service"
   cluster         = aws_ecs_cluster.tm.id
   task_definition = aws_ecs_task_definition.tm_task.arn
   desired_count   = 1
@@ -94,7 +94,7 @@ resource "aws_ecs_service" "tm_service" {
 
   load_balancer {
     target_group_arn = aws_lb_target_group.tm_target_group.arn
-    container_name   = "tmc"
+    container_name   = "ecs-app"
     container_port   = 3000
   }
 
