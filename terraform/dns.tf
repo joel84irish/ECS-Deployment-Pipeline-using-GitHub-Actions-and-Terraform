@@ -1,10 +1,10 @@
-data "aws_route53_zone" "lab" {
-  name = "lab.moabukar.co.uk"
+data "aws_route53_zone" "joel" {
+  name = "joelirish-bae.app"
 }
 
 resource "aws_route53_record" "tm" {
-  zone_id = data.aws_route53_zone.lab.zone_id
-  name    = "tm.${data.aws_route53_zone.lab.name}"
+  zone_id = data.aws_route53_zone.joel.zone_id
+  name    = "tm.${data.aws_route53_zone.joel.name}"
   type    = "A"
 
   alias {
@@ -16,7 +16,7 @@ resource "aws_route53_record" "tm" {
 
 ## HTTPS/DNS
 resource "aws_acm_certificate" "tm_cert" {
-  domain_name       = "tm.lab.moabukar.co.uk"
+  domain_name       = "tm.joelirish-bae.app"
   validation_method = "DNS"
 
   lifecycle {
@@ -38,7 +38,7 @@ resource "aws_route53_record" "tm_cert_validation" {
   records         = [each.value.record]
   ttl             = 60
   type            = each.value.type
-  zone_id         = data.aws_route53_zone.lab.zone_id
+  zone_id         = data.aws_route53_zone.joel.zone_id
 }
 
 resource "aws_acm_certificate_validation" "tm_cert" {
