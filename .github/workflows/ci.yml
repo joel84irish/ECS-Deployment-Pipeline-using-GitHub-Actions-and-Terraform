@@ -1,4 +1,4 @@
-name: Build, Push, and Deploy to ECS
+ name: Build, Push, and Deploy to ECS
 
 on:
   workflow_dispatch:
@@ -10,7 +10,8 @@ on:
 
 env:
   AWS_REGION: us-west-2
-  ECR_REPOSITORY: tm
+  ECR_REGISTRY: 980921749029.dkr.ecr.us-west-2.amazonaws.com
+  ECR_REPOSITORY: threat-model
   ECS_SERVICE: ecs-service
   ECS_CLUSTER: joel-sandbox
   CONTAINER_NAME: ecs-app
@@ -18,8 +19,6 @@ env:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    env:
-      ECR_REGISTRY: ${{ secrets.ECR_REGISTRY }}
 
     steps:
       - name: Check if deployment is confirmed
@@ -48,12 +47,8 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
 
-      - name: Build, tag as latest, and push Docker image to ECR
-        id: build-image
+      - name: Build, tag, and push Docker image to Private ECR
         run: |
-         ECR_URI="public.ecr.aws/c7u5x4r5/tm"
-         docker build -t $ECR_URI:latest .
-         docker push $ECR_URI:latest
-         echo "image=$ECR_URI:latest" >> $GITHUB_ENV
-
-    
+          IMAGE_URI=${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:latest
+          docker build -t $IMAGE_URI .
+          docker push $IMAGE_URI
