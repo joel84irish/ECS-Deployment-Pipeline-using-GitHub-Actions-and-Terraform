@@ -23,11 +23,17 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Install Terraform
+        run: |
+          curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+          sudo apt-add-repository "deb https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+          sudo apt-get update && sudo apt-get install terraform
+
       - name: Terraform Format
-        working-directory: tf-mods-version  # Set the working directory to the 'terraform' folder
+        working-directory: tf-mods-version
         run: |
           terraform fmt -check
           if [ $? -ne 0 ]; then
@@ -35,11 +41,11 @@ jobs:
           fi
 
       - name: Terraform Initialize
-        working-directory: tf-mods-version  # Set the working directory to the 'terraform' folder
+        working-directory: tf-mods-version
         run: terraform init
 
       - name: Terraform Validate
-        working-directory: tf-mods-version  # Set the working directory to the 'terraform' folder
+        working-directory: tf-mods-version
         run: terraform validate
 
       - name: Install tflint
@@ -48,7 +54,7 @@ jobs:
           tflint --version
 
       - name: Terraform Lint
-        working-directory: tf-mods-version  # Set the working directory to the 'terraform' folder
+        working-directory: tf-mods-version
         run: tflint
 
   terraform_plan_test:
@@ -57,22 +63,28 @@ jobs:
     needs: terraform_static_analysis
     if: github.event_name == 'workflow_dispatch'
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Install Terraform
+        run: |
+          curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+          sudo apt-add-repository "deb https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+          sudo apt-get update && sudo apt-get install terraform
+
       - name: Terraform Plan for Test
-        working-directory: tf-mods-version  # Set the working directory to the 'terraform' folder
+        working-directory: tf-mods-version
         id: plan-test
         run: |
           terraform init
-          terraform plan -out=plan-test  # Removed the -var-file argument
+          terraform plan -out=plan-test
           terraform show -no-color plan-test > plan-test.txt
-      
+
       - name: Upload Terraform Plan Artifact for Test
         uses: actions/upload-artifact@v3
         with:
           name: plan-test
-          path: terraform/plan-test  # Adjust the path to include the 'terraform' folder
+          path: terraform/plan-test
 
   terraform_apply:
     name: 'Terraform Apply'
@@ -82,16 +94,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Terraform Apply
-        working-directory: tf-mods-version  # Set the working directory to the 'terraform' folder
+      - name: Install Terraform
         run: |
-          terraform init
-          terraform apply -auto-approve
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: 'us-west-2'
-          
+          curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+          sudo apt-add-repository "
   # test_deployment:
   #   name: 'Test Deployment'
   #   runs-on: ubuntu-latest
