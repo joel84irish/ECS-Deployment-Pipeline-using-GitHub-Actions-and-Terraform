@@ -111,8 +111,6 @@ jobs:
           AWS_DEFAULT_REGION: 'us-west-2'
 
 
-
-
   # test_deployment:
   #   name: 'Test Deployment'
   #   runs-on: ubuntu-latest
