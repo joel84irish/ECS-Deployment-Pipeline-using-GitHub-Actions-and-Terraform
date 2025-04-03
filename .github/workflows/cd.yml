@@ -1,12 +1,11 @@
 name: 'Terraform CI/CD'
 
+
 on:
-  workflow_dispatch:
-    inputs:
-      confirmation:
-        description: 'Type "yes" to confirm deployment'
-        required: true
-        default: 'no'
+  workflow_run:
+    workflows: ["Build, Push, and Deploy to ECS"]  # Name CI workflow
+    types:
+      - completed  # Runs when previous workflow completes
 
 permissions:
   contents: read
